@@ -1,0 +1,6 @@
+# 依赖与构建产物之外的文件
+node_modules/
+*.tgz
+*.log
+.DS_Store
+.npm-cache/

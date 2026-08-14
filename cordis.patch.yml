@@ -1,0 +1,7 @@
+# dsh-workspace-inspector 插件层
+# 作为 profile bundle 应用到组合树：插入一行启用双面插件。
+# 行 id 是配置树中的稳定身份；name 是包名（host 半面由 loader 解析，
+# client 半面由 client-modules 按 dsh.client 声明扫描进 __DSH_BOOT__）。
+- insert:
+    - id: workspace-inspector
+      name: dsh-workspace-inspector
