@@ -2,6 +2,15 @@
 
 DeepSeek Harness (DSH) Web 客户端插件：在**右侧详情列**显示当前会话的 **Token 用量**、**消息目录（全部历史）** 与 **工作区文件树**。跨平台（macOS / Windows / Linux）。
 
+> **English**: A right-side panel plugin for the [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) web UI. It shows **token usage with per-part breakdown**, a **collapsible full-history message outline** (click to jump to the message), **context pressure**, and a **workspace file tree** (click a file to open it with your system default app). Cross-platform: macOS / Windows / Linux.
+>
+> Install (GitHub, recommended — no build needed):
+> ```sh
+> dsh plugin --profile web add github:GIGHT111/dsh-workspace-inspector
+> dsh --profile web     # restart to activate
+> ```
+> Requirements: `dsh` installed and `pnpm` on `PATH`. After restarting, the panel opens on the right side; close it with ✕ and reopen it with the **📊 Overview** button in the session header.
+
 ## 功能
 
 - **Token 用量（本会话累计）**：输入（未缓存）、缓存读取、输出及**各自占比**（不含缓存写入），总计 = 输入+缓存读取+输出 —— 来自 `tokenUsage` 会话投影。
@@ -45,9 +54,15 @@ dsh plugin --profile web add /path/to/dsh-workspace-inspector
 仓库已提交构建产物 `lib/`，从 Git 安装**无需执行任何构建脚本**：
 
 ```sh
-dsh plugin --profile web add github:<owner>/<repo>
-# 或带分支/提交：github:<owner>/<repo>#<branch>
+dsh plugin --profile web add github:GIGHT111/dsh-workspace-inspector
+# 或带分支/提交：github:GIGHT111/dsh-workspace-inspector#<branch>
 ```
+
+> **Install from GitHub (English)** — this repo ships its built `lib/`, so **no build step is needed** on install:
+> ```sh
+> dsh plugin --profile web add github:GIGHT111/dsh-workspace-inspector
+> ```
+> Pin a stable commit with `#v0.1.0` (or any tag/commit) if you prefer.
 
 安装后重启 web profile：
 
@@ -86,4 +101,4 @@ dsh plugin --profile web add /path/to/dsh-workspace-inspector-0.1.0.tgz
 - 右侧列默认由 `ui-conversation` 的 DetailsPanel 占用（当前无任何代码会打开它，处于休眠态）；本插件以更低 priority 遮蔽它并在会话存在时自动打开。卸载插件后恢复原状。
 - `tokenUsage`/`contextPressure` 来自 host 端 token-meter 投影（本会话累计）。
 - 消息目录由 host 从持久化日志重建，覆盖全部历史；跳转依赖对话视图已加载对应消息行，未加载时会提示。
-- 文件树经 localhost HTTP 路由读取，仅限工作区根之内的路径；不在浏览器 RPC 信任围栏内，请勿在不可信网络环境中暴露 3080 端口。
+- 文件树经 localhost HTTP 路由读取，仅限工作区根之内的路径；不在浏览器 RPC 信任围栏内，请勿在不可信网络环境中暴露 3080 端口。uan
